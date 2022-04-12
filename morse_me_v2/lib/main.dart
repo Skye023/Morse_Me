@@ -31,6 +31,10 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
+  static const _converterLabel = TextStyle(
+      fontSize: 15.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.deepOrangeAccent);
   static final List<ListView> _widgetOptions = <ListView>[
     ListView.builder(
       itemCount: Info.inf.length,
@@ -46,7 +50,42 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       },
     ),
     ListView(
-
+      padding: const EdgeInsets.all(20.0),
+      children: const <Widget>[
+        Text(
+          'Morse2Text',
+          style: _converterLabel,
+        ),
+        SizedBox(
+          height: 6,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Morse Code',
+          ),
+        ),
+        TextButton(
+          onPressed: (),
+          child: Text(''),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Text(
+          'Text2Morse',
+          style: _converterLabel,
+        ),
+        SizedBox(
+          height: 6,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Text',
+          ),
+        ),
+      ],
     ),
   ];
 
