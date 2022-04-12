@@ -45,18 +45,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         );
       },
     ),
-    ListView.builder(
-      itemCount: Info.inf.length,
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return MorseDetail(info: Info.inf[index]);
-            }));
-          },
-          child: buildInfoCard(Info.inf[index]),
-        );
-      },
+    ListView(
+
     ),
   ];
 
