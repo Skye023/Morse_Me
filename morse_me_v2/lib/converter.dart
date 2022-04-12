@@ -2,18 +2,30 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-class Morse2Text extends StatelessWidget {
+class Morse2Text extends StatefulWidget {
   const Morse2Text({Key? key}) : super(key: key);
 
   @override
+  _Morse2Text createState() => _Morse2Text();
+}
+
+class _Morse2Text extends State<Morse2Text> {
+  @override
   Widget build(BuildContext context) {
+    String a = '';
+    String _text = '';
 
     void _doSth(int i) {
       if (i == 0) {
-
+        a += '.';
       } else if (i == 1) {
-      } else
+        a += '_';
+      } else {
         print('error');
+      }
+      setState(() {
+        _text = a;
+      });
     }
 
     return Scaffold(
@@ -26,8 +38,11 @@ class Morse2Text extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(children: <Widget>[
             Text(
-             '.___.._.',
-              style: TextStyle(fontSize: 30,fontWeight: FontWeight.w900,color: Colors.deepPurple),
+              _text,
+              style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.deepPurple),
             ),
             const SizedBox(
               height: 25.0,
@@ -73,9 +88,14 @@ class Morse2Text extends StatelessWidget {
   }
 }
 
-class Text2Morse extends StatelessWidget {
+class Text2Morse extends StatefulWidget {
   const Text2Morse({Key? key}) : super(key: key);
 
+  @override
+  _Text2Morse createState() => _Text2Morse();
+}
+
+class _Text2Morse extends State<Text2Morse> {
   @override
   Widget build(BuildContext context) {
     final _controller = TextEditingController();
