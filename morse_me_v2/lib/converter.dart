@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class Morse2Text extends StatelessWidget {
@@ -7,30 +9,48 @@ class Morse2Text extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Morse2Text'),
+          title: const Text('Morse2Text'),
           backgroundColor: Colors.deepOrangeAccent,
         ),
         body: SingleChildScrollView(
           child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Row(children: <Widget>[
-                RawMaterialButton(
-                    onPressed: () {},
-                    fillColor: Colors.greenAccent,
-                    hoverColor: Colors.green,
-                    child: const Icon(
-                      Icons.circle,
-                      color: Colors.white,
-                    )),
-                RawMaterialButton(
-                    onPressed: () {},
-                    fillColor: Colors.greenAccent,
-                    hoverColor: Colors.green,
-                    child: const Icon(
-                      Icons.rectangle,
-                      color: Colors.white,
-                    ))
-              ])),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RawMaterialButton(
+                        onPressed: () {
+                          log('did');
+                        },
+                        constraints: BoxConstraints.tight(const Size(150, 150)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        fillColor: Colors.greenAccent,
+                        hoverColor: Colors.green,
+                        child: const Icon(
+                          Icons.circle,
+                          size: 50.0,
+                          color: Colors.white,
+                        )),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    RawMaterialButton(
+                      onPressed: () {
+                        log('dah');
+                      },
+                      constraints: BoxConstraints.tight(const Size(150, 150)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      fillColor: Colors.greenAccent,
+                      hoverColor: Colors.green,
+                      child: const Icon(
+                        Icons.rectangle,
+                        size: 50.0,
+                        color: Colors.white,
+                      ),
+                    )
+                  ])),
         ));
   }
 }
@@ -42,19 +62,26 @@ class Text2Morse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Text2Morse'),
+          title: const Text('Text2Morse'),
           backgroundColor: Colors.deepOrangeAccent,
         ),
         body: SingleChildScrollView(
           child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(children: <Widget>[
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.keyboard),
                       hintText: 'Text Input',
                       helperText: 'English Only!',
                       border: OutlineInputBorder()),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Icon(
+                    Icons.transform_rounded,
+                    size: 20.0,
+                  ),
                 )
               ])),
         ));
@@ -71,7 +98,7 @@ class ErrorPage extends StatelessWidget {
         title: const Text('ERROR!!!'),
       ),
       body: Center(
-        child: Text('This is an error verification page.'),
+        child: const Text('This is an error verification page.'),
       ),
     );
   }
