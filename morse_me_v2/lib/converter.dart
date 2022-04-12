@@ -14,8 +14,7 @@ String a = '';
 class _Morse2Text extends State<Morse2Text> {
   @override
   Widget build(BuildContext context) {
-    String _text = '';
-
+    String _text = a;
     void _doSth(int i) {
       if (i == 0) {
         a += '.';
@@ -24,12 +23,9 @@ class _Morse2Text extends State<Morse2Text> {
       } else if (i == 2) {
         a = a.substring(0, a.length - 1);
       } else {
-        print('error');
+        log('error');
       }
-      print('set: ' + a.toString());
-      setState(() {
-        _text = a.toString();
-      });
+      setState(() {});
     }
 
     return Scaffold(
@@ -44,7 +40,7 @@ class _Morse2Text extends State<Morse2Text> {
             Text(
               _text,
               style: const TextStyle(
-                  fontSize: 30,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.w900,
                   color: Colors.deepPurple),
             ),
@@ -107,6 +103,26 @@ class _Morse2Text extends State<Morse2Text> {
                 size: 50.0,
                 color: Colors.white,
               ),
+            ),
+            RawMaterialButton(
+              onPressed: () {
+                log('convert');
+                if (a.isNotEmpty) {
+                  _doSth(3);
+                }
+              },
+              constraints: BoxConstraints.tight(const Size(150, 80)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              fillColor: Colors.redAccent,
+              hoverColor: Colors.red,
+              child: const Text(
+                'CONVERT',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
+              ),
             )
           ]),
         )));
@@ -128,10 +144,6 @@ class _Text2Morse extends State<Text2Morse> {
     @override
     void dispose() {
       _controller.dispose();
-    }
-
-    void T2M(String a) {
-      print(a);
     }
 
     final ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
@@ -160,19 +172,49 @@ class _Text2Morse extends State<Text2Morse> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      T2M(_controller.text);
+                      a = _controller.text;
+                      T2M();
+                      setState(() {});
                     },
                     style: _buttonStyle,
                     child: const Text('CONVERT')),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
-                TextField(
-                  controller: _controller,
+                const Text(
+                  'Text: ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20.0,
+                      color: Colors.blueGrey),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Morse Code:',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20.0,
+                      color: Colors.cyan),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  _controller.text,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.0,
+                      color: Colors.blueGrey),
                 )
               ])),
         ));
   }
+}
+
+void T2M() {
+  print(a);
 }
 
 class ErrorPage extends StatelessWidget {
@@ -184,8 +226,8 @@ class ErrorPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ERROR!!!'),
       ),
-      body: Center(
-        child: const Text('This is an error verification page.'),
+      body: const Center(
+        child: Text('This is an error verification page.'),
       ),
     );
   }
