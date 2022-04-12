@@ -9,10 +9,11 @@ class Morse2Text extends StatefulWidget {
   _Morse2Text createState() => _Morse2Text();
 }
 
+String a = '';
+
 class _Morse2Text extends State<Morse2Text> {
   @override
   Widget build(BuildContext context) {
-    String a = '';
     String _text = '';
 
     void _doSth(int i) {
@@ -20,11 +21,14 @@ class _Morse2Text extends State<Morse2Text> {
         a += '.';
       } else if (i == 1) {
         a += '_';
+      } else if (i == 2) {
+        a = a.substring(0, a.length - 1);
       } else {
         print('error');
       }
+      print('set: ' + a.toString());
       setState(() {
-        _text = a;
+        _text = a.toString();
       });
     }
 
@@ -64,7 +68,7 @@ class _Morse2Text extends State<Morse2Text> {
                     color: Colors.white,
                   )),
               const SizedBox(
-                width: 50,
+                width: 60,
               ),
               RawMaterialButton(
                 onPressed: () {
@@ -82,7 +86,28 @@ class _Morse2Text extends State<Morse2Text> {
                   color: Colors.white,
                 ),
               )
-            ])
+            ]),
+            const SizedBox(
+              height: 35,
+            ),
+            RawMaterialButton(
+              onPressed: () {
+                log('del');
+                if (a.isNotEmpty) {
+                  _doSth(2);
+                }
+              },
+              constraints: BoxConstraints.tight(const Size(150, 80)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              fillColor: Colors.redAccent,
+              hoverColor: Colors.red,
+              child: const Icon(
+                Icons.backspace_outlined,
+                size: 50.0,
+                color: Colors.white,
+              ),
+            )
           ]),
         )));
   }
