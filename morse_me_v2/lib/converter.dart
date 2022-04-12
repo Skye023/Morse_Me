@@ -80,58 +80,6 @@ void M2T() {
   }
   log('result: ' + _result);
 }
-/*for (int j = 0; j < MorseCode.length; j++) {
-        if(tmp.isEmpty){
-          break;
-        }
-        if (j < 26) {
-          if (tmp.compareTo(MorseCode[j]) == 0) {
-            log(j.toString() +
-                ' ' +
-                'a'.codeUnitAt(0).toString() +
-                ' ' +
-                (j + 'a'.codeUnitAt(0)).toString());
-            _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
-            tmp = '';
-          }
-        } else {
-          log(j.toString() +
-              ' ' +
-              '0'.codeUnitAt(0).toString() +
-              ' ' +
-              (j + '0'.codeUnitAt(0) - 26).toString());
-          _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
-          tmp = '';
-        }
-      }
-      log(i.toString() + ' r: ' + _result);
-    } else {
-      tmp += a[i];
-    }*/
-
-/*if (a[i + 1] != ' ') {
-      tmp += a[i];
-      if (i == a.length - 2) {
-        tmp += a[i + 1];
-      }
-    } else {
-      for (int j = 0; j < MorseCode.length; j++) {
-        if (j < 26) {
-          if (tmp == MorseCode[j]) {
-            log((j + 'a'.codeUnitAt(0)).toString());
-            _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
-            tmp = '';
-          }
-        } else {
-          _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
-          tmp = '';
-        }
-      }
-      log(i.toString() + ' r: ' + _result);
-    }
-    log('tmp: ' + tmp);
-  }
-  log('result: ' + _result);*/
 
 void T2M() {
   _result = '';
@@ -161,6 +109,7 @@ class _Morse2Text extends State<Morse2Text> {
   @override
   Widget build(BuildContext context) {
     String _text = a;
+    String _textResult = _result;
     void _doSth(int i) {
       if (i == -1) {
         a += ' ';
@@ -195,7 +144,17 @@ class _Morse2Text extends State<Morse2Text> {
                   color: Colors.deepPurple),
             ),
             const SizedBox(
-              height: 25.0,
+              height: 10.0,
+            ),
+            Text(
+              _textResult,
+              style: const TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.teal),
+            ),
+            const SizedBox(
+              height: 30.0,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               RawMaterialButton(
@@ -307,6 +266,7 @@ class _Morse2Text extends State<Morse2Text> {
               onPressed: () {
                 log('clear');
                 a = '';
+                _result = '';
                 setState(() {});
               },
               constraints: BoxConstraints.tight(const Size(150, 80)),
