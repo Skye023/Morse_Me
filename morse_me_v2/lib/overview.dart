@@ -21,3 +21,9 @@ class Info {
     ),
   ];
 }
+
+class ConvTypy {
+  String label;
+  ConvTypy(this.label);
+  static List<ConvTypy> typ = [ConvTypy('Morse2ext'), ConvTypy('Text2Morse')];
+}

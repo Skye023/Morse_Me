@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:html';
 import 'dart:ui';
 
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'overview.dart';
 import 'detail.dart';
+import 'converter.dart';
 
 void main() => runApp(const Morse_Me());
 
@@ -32,7 +34,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const _converterLabel = TextStyle(
-      fontSize: 15.0,
+      fontSize: 20.0,
       fontWeight: FontWeight.bold,
       color: Colors.deepOrangeAccent);
   static final List<ListView> _widgetOptions = <ListView>[
@@ -49,45 +51,44 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         );
       },
     ),
-    ListView(
-      padding: const EdgeInsets.all(20.0),
-      children: const <Widget>[
-        Text(
-          'Morse2Text',
-          style: _converterLabel,
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'Morse Code',
-          ),
-        ),
-        TextButton(
-          onPressed: (),
-          child: Text(''),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Text(
-          'Text2Morse',
-          style: _converterLabel,
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'Text',
-          ),
-        ),
-      ],
+    ListView.builder(
+      itemCount: ConvTypy.typ.length,
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+          onTap: () {
+            log('index: '+index.toString());
+            if(index==0){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Morse2Text()));
+            }else if(index==1){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Text2Morse()));
+            }else{
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ErrorPage()));
+            }
+          },
+          child: buildConvertType(ConvTypy.typ[index]),
+        );
+      },
     ),
   ];
+
+  static Widget buildConvertType(ConvTypy type){
+    return Card(
+      elevation: 2.0,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              type.label,
+              style: _converterLabel,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   static Widget buildInfoCard(Info info) {
     return Card(
