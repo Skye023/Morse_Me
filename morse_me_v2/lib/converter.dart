@@ -38,7 +38,8 @@ List<String> MorseCode = [
   '_....',
   '__...',
   '___..',
-  '____.'
+  '____.',
+  '......'
 ];
 String a = '';
 String b = '';
@@ -47,13 +48,95 @@ String _result = '';
 void M2T() {
   log(a);
   _result = '';
+  List<String> tmp = a.split(' ');
+  log(tmp.toString());
+  for (int i = 0; i < tmp.length; i++) {
+    log(i.toString() + ' : ' + tmp[i]);
+    for (int j = 0; j < MorseCode.length; j++) {
+      log('j: ' + j.toString());
+      if (tmp[i].compareTo(MorseCode[MorseCode.length - 1]) == 0) {
+        _result += ' ';
+        break;
+      } else if (j < 26 && (tmp[i].compareTo(MorseCode[j]) == 0)) {
+        log('c ' +
+            j.toString() +
+            ' ' +
+            'a'.codeUnitAt(0).toString() +
+            ' ' +
+            String.fromCharCode(j + 'a'.codeUnitAt(0)));
+        _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
+        break;
+      } else if (j >= 26 && (tmp[i].compareTo(MorseCode[j]) == 0)) {
+        log('n ' +
+            j.toString() +
+            ' ' +
+            '0'.codeUnitAt(0).toString() +
+            ' ' +
+            String.fromCharCode(j + '0'.codeUnitAt(0)));
+        _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
+        break;
+      }
+    }
+  }
+  log('result: ' + _result);
 }
+/*for (int j = 0; j < MorseCode.length; j++) {
+        if(tmp.isEmpty){
+          break;
+        }
+        if (j < 26) {
+          if (tmp.compareTo(MorseCode[j]) == 0) {
+            log(j.toString() +
+                ' ' +
+                'a'.codeUnitAt(0).toString() +
+                ' ' +
+                (j + 'a'.codeUnitAt(0)).toString());
+            _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
+            tmp = '';
+          }
+        } else {
+          log(j.toString() +
+              ' ' +
+              '0'.codeUnitAt(0).toString() +
+              ' ' +
+              (j + '0'.codeUnitAt(0) - 26).toString());
+          _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
+          tmp = '';
+        }
+      }
+      log(i.toString() + ' r: ' + _result);
+    } else {
+      tmp += a[i];
+    }*/
+
+/*if (a[i + 1] != ' ') {
+      tmp += a[i];
+      if (i == a.length - 2) {
+        tmp += a[i + 1];
+      }
+    } else {
+      for (int j = 0; j < MorseCode.length; j++) {
+        if (j < 26) {
+          if (tmp == MorseCode[j]) {
+            log((j + 'a'.codeUnitAt(0)).toString());
+            _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
+            tmp = '';
+          }
+        } else {
+          _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
+          tmp = '';
+        }
+      }
+      log(i.toString() + ' r: ' + _result);
+    }
+    log('tmp: ' + tmp);
+  }
+  log('result: ' + _result);*/
 
 void T2M() {
   _result = '';
   b = b.toLowerCase();
   for (int i = 0; i < b.length; i++) {
-    log(b.codeUnitAt(i).toString());
     if (b[i] == ' ') {
       _result += '/';
     } else {
