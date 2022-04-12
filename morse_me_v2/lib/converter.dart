@@ -2,14 +2,36 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+List<String> MorseCode = [];
+String a = '';
+String b = '';
+String _result = '';
+
+void M2T() {
+  log(a);
+  _result = '';
+}
+
+void T2M() {
+  log(b);
+  _result = '';
+  a = a.toLowerCase();
+  log(b);
+  for (int i = 0; i < b.length; i++) {
+    if (b[i] == ' ') {
+      _result += '';
+    } else {
+      _result += MorseCode[(b[i] as int) - ('a' as int)];
+    }
+  }
+}
+
 class Morse2Text extends StatefulWidget {
   const Morse2Text({Key? key}) : super(key: key);
 
   @override
   _Morse2Text createState() => _Morse2Text();
 }
-
-String a = '';
 
 class _Morse2Text extends State<Morse2Text> {
   @override
@@ -22,6 +44,8 @@ class _Morse2Text extends State<Morse2Text> {
         a += '_';
       } else if (i == 2) {
         a = a.substring(0, a.length - 1);
+      } else if (i == 3) {
+        M2T();
       } else {
         log('error');
       }
@@ -167,7 +191,7 @@ class _Text2Morse extends State<Text2Morse> {
                   decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.keyboard),
                       hintText: 'Text Input',
-                      helperText: 'English Only!',
+                      helperText: 'English Character(s) Only!',
                       border: OutlineInputBorder()),
                 ),
                 const SizedBox(
@@ -175,7 +199,7 @@ class _Text2Morse extends State<Text2Morse> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      a = _controller.text;
+                      b = _controller.text;
                       T2M();
                       setState(() {});
                     },
@@ -184,9 +208,9 @@ class _Text2Morse extends State<Text2Morse> {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  'Text: ',
-                  style: TextStyle(
+                Text(
+                  'Text: ' + b,
+                  style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20.0,
                       color: Colors.blueGrey),
@@ -194,9 +218,9 @@ class _Text2Morse extends State<Text2Morse> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  'Morse Code:',
-                  style: TextStyle(
+                Text(
+                  'Morse Code: ' + _result,
+                  style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20.0,
                       color: Colors.cyan),
@@ -214,10 +238,6 @@ class _Text2Morse extends State<Text2Morse> {
               ])),
         ));
   }
-}
-
-void T2M() {
-  print(a);
 }
 
 class ErrorPage extends StatelessWidget {

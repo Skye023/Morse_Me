@@ -54,7 +54,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            log('index: ' + index.toString());
             if (index == 0) {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Morse2Text()));
