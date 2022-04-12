@@ -2,7 +2,44 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-List<String> MorseCode = [];
+List<String> MorseCode = [
+  '._',
+  '_...',
+  '_._.',
+  '_..',
+  '.',
+  '.._.',
+  '__.',
+  '....',
+  '..',
+  '.___',
+  '_._',
+  '._..',
+  '__',
+  '_.',
+  '___',
+  '.__.',
+  '__._',
+  '._.',
+  '...',
+  '_',
+  '.._',
+  '..._',
+  '.__',
+  '_.._',
+  '_.__',
+  '__..',
+  '_____',
+  '.____',
+  '..___',
+  '...__',
+  '...._',
+  '.....',
+  '_....',
+  '__...',
+  '___..',
+  '____.'
+];
 String a = '';
 String b = '';
 String _result = '';
@@ -13,16 +50,20 @@ void M2T() {
 }
 
 void T2M() {
-  log(b);
   _result = '';
-  a = a.toLowerCase();
-  log(b);
+  b = b.toLowerCase();
   for (int i = 0; i < b.length; i++) {
+    log(b.codeUnitAt(i).toString());
     if (b[i] == ' ') {
-      _result += '';
+      _result += '/';
     } else {
-      _result += MorseCode[(b[i] as int) - ('a' as int)];
+      if (b.codeUnitAt(i) - 'a'.codeUnitAt(0) >= 0) {
+        _result += MorseCode[b.codeUnitAt(i) - 'a'.codeUnitAt(0)];
+      } else {
+        _result += MorseCode[b.codeUnitAt(i) - 'a'.codeUnitAt(0) + 49 + 26];
+      }
     }
+    _result += ' ';
   }
 }
 
@@ -38,7 +79,9 @@ class _Morse2Text extends State<Morse2Text> {
   Widget build(BuildContext context) {
     String _text = a;
     void _doSth(int i) {
-      if (i == 0) {
+      if (i == -1) {
+        a += ' ';
+      } else if (i == 0) {
         a += '.';
       } else if (i == 1) {
         a += '_';
@@ -110,24 +153,47 @@ class _Morse2Text extends State<Morse2Text> {
             const SizedBox(
               height: 35,
             ),
-            RawMaterialButton(
-              onPressed: () {
-                log('del');
-                if (a.isNotEmpty) {
-                  _doSth(2);
-                }
-              },
-              constraints: BoxConstraints.tight(const Size(150, 80)),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              fillColor: Colors.redAccent,
-              hoverColor: Colors.red,
-              child: const Icon(
-                Icons.backspace_outlined,
-                size: 50.0,
-                color: Colors.white,
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              RawMaterialButton(
+                onPressed: () {
+                  log('|_|');
+                  if (a.isNotEmpty) {
+                    _doSth(-1);
+                  }
+                },
+                constraints: BoxConstraints.tight(const Size(150, 80)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                fillColor: Colors.yellowAccent,
+                hoverColor: Colors.yellow,
+                child: const Icon(
+                  Icons.space_bar_rounded,
+                  size: 50.0,
+                  color: Colors.white,
+                ),
               ),
-            ),
+              const SizedBox(
+                width: 60,
+              ),
+              RawMaterialButton(
+                onPressed: () {
+                  log('del');
+                  if (a.isNotEmpty) {
+                    _doSth(2);
+                  }
+                },
+                constraints: BoxConstraints.tight(const Size(150, 80)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                fillColor: Colors.redAccent,
+                hoverColor: Colors.red,
+                child: const Icon(
+                  Icons.backspace_outlined,
+                  size: 50.0,
+                  color: Colors.white,
+                ),
+              ),
+            ]),
             const SizedBox(
               height: 40.0,
             ),
@@ -138,13 +204,35 @@ class _Morse2Text extends State<Morse2Text> {
                   _doSth(3);
                 }
               },
-              constraints: BoxConstraints.tight(const Size(150, 80)),
+              constraints: BoxConstraints.tight(const Size(200, 80)),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               fillColor: Colors.lightGreenAccent,
               hoverColor: Colors.lightGreen,
               child: const Text(
                 'CONVERT',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            RawMaterialButton(
+              onPressed: () {
+                log('clear');
+                a = '';
+                setState(() {});
+              },
+              constraints: BoxConstraints.tight(const Size(150, 80)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              fillColor: Colors.red,
+              hoverColor: Colors.red[800],
+              child: const Text(
+                'CLEAR',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
