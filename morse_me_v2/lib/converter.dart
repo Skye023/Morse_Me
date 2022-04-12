@@ -104,6 +104,9 @@ class _Morse2Text extends State<Morse2Text> {
                 color: Colors.white,
               ),
             ),
+            const SizedBox(
+              height: 40.0,
+            ),
             RawMaterialButton(
               onPressed: () {
                 log('convert');
@@ -114,8 +117,8 @@ class _Morse2Text extends State<Morse2Text> {
               constraints: BoxConstraints.tight(const Size(150, 80)),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
-              fillColor: Colors.redAccent,
-              hoverColor: Colors.red,
+              fillColor: Colors.lightGreenAccent,
+              hoverColor: Colors.lightGreen,
               child: const Text(
                 'CONVERT',
                 style: TextStyle(

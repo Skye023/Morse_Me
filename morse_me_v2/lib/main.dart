@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:html';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -56,13 +54,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            log('index: '+index.toString());
-            if(index==0){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Morse2Text()));
-            }else if(index==1){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Text2Morse()));
-            }else{
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ErrorPage()));
+            log('index: ' + index.toString());
+            if (index == 0) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Morse2Text()));
+            } else if (index == 1) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Text2Morse()));
+            } else {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ErrorPage()));
             }
           },
           child: buildConvertType(ConvTypy.typ[index]),
@@ -71,11 +72,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
   ];
 
-  static Widget buildConvertType(ConvTypy type){
+  static Widget buildConvertType(ConvTypy type) {
     return Card(
       elevation: 2.0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
