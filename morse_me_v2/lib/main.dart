@@ -50,7 +50,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       },
     ),
     ListView.builder(
-      itemCount: ConvTypy.typ.length,
+      itemCount: ConvType.typ.length,
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
@@ -65,13 +65,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   MaterialPageRoute(builder: (context) => const ErrorPage()));
             }
           },
-          child: buildConvertType(ConvTypy.typ[index]),
+          child: buildConvertType(ConvType.typ[index]),
         );
       },
     ),
   ];
 
-  static Widget buildConvertType(ConvTypy type) {
+  static Widget buildConvertType(ConvType type) {
     return Card(
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

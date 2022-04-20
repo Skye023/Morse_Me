@@ -46,39 +46,22 @@ String b = '';
 String _result = '';
 
 void M2T() {
-  log(a);
   _result = '';
   List<String> tmp = a.split(' ');
-  log(tmp.toString());
   for (int i = 0; i < tmp.length; i++) {
-    log(i.toString() + ' : ' + tmp[i]);
     for (int j = 0; j < MorseCode.length; j++) {
-      log('j: ' + j.toString());
       if (tmp[i].compareTo(MorseCode[MorseCode.length - 1]) == 0) {
         _result += ' ';
         break;
       } else if (j < 26 && (tmp[i].compareTo(MorseCode[j]) == 0)) {
-        log('c ' +
-            j.toString() +
-            ' ' +
-            'a'.codeUnitAt(0).toString() +
-            ' ' +
-            String.fromCharCode(j + 'a'.codeUnitAt(0)));
         _result += String.fromCharCode(j + 'a'.codeUnitAt(0));
         break;
       } else if (j >= 26 && (tmp[i].compareTo(MorseCode[j]) == 0)) {
-        log('n ' +
-            j.toString() +
-            ' ' +
-            '0'.codeUnitAt(0).toString() +
-            ' ' +
-            String.fromCharCode(j + '0'.codeUnitAt(0)));
         _result += String.fromCharCode(j + '0'.codeUnitAt(0) - 26);
         break;
       }
     }
   }
-  log('result: ' + _result);
 }
 
 void T2M() {
@@ -159,7 +142,6 @@ class _Morse2Text extends State<Morse2Text> {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               RawMaterialButton(
                   onPressed: () {
-                    log('did');
                     _doSth(0);
                   },
                   constraints: BoxConstraints.tight(const Size(150, 150)),
@@ -177,7 +159,6 @@ class _Morse2Text extends State<Morse2Text> {
               ),
               RawMaterialButton(
                 onPressed: () {
-                  log('dah');
                   _doSth(1);
                 },
                 constraints: BoxConstraints.tight(const Size(150, 150)),
@@ -198,7 +179,6 @@ class _Morse2Text extends State<Morse2Text> {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               RawMaterialButton(
                 onPressed: () {
-                  log('|_|');
                   if (a.isNotEmpty) {
                     _doSth(-1);
                   }
@@ -219,7 +199,6 @@ class _Morse2Text extends State<Morse2Text> {
               ),
               RawMaterialButton(
                 onPressed: () {
-                  log('del');
                   if (a.isNotEmpty) {
                     _doSth(2);
                   }
@@ -241,7 +220,6 @@ class _Morse2Text extends State<Morse2Text> {
             ),
             RawMaterialButton(
               onPressed: () {
-                log('convert');
                 if (a.isNotEmpty) {
                   _doSth(3);
                 }
@@ -264,7 +242,6 @@ class _Morse2Text extends State<Morse2Text> {
             ),
             RawMaterialButton(
               onPressed: () {
-                log('clear');
                 a = '';
                 _result = '';
                 setState(() {});
