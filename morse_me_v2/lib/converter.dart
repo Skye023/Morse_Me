@@ -122,6 +122,7 @@ class _Morse2Text extends State<Morse2Text> {
             Text(
               _text,
               style: const TextStyle(
+                  letterSpacing: 3.0,
                   fontSize: 30.0,
                   fontWeight: FontWeight.w900,
                   color: Colors.deepPurple),
@@ -326,23 +327,21 @@ class _Text2Morse extends State<Text2Morse> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  'Morse Code: ' + _result,
-                  style: const TextStyle(
+                const Text(
+                  'Morse Code: ',
+                  style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20.0,
                       color: Colors.cyan),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
                 Text(
-                  _controller.text,
+                  _result,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w700,
+                      letterSpacing: 3.0,
+                      fontWeight: FontWeight.w900,
                       fontSize: 20.0,
-                      color: Colors.blueGrey),
-                )
+                      color: Colors.cyan),
+                ),
               ])),
         ));
   }
