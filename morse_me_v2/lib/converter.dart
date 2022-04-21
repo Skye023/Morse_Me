@@ -144,7 +144,7 @@ class _Morse2Text extends State<Morse2Text> {
                   onPressed: () {
                     _doSth(0);
                   },
-                  constraints: BoxConstraints.tight(const Size(150, 150)),
+                  constraints: BoxConstraints.tight(const Size(120, 120)),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   fillColor: Colors.greenAccent,
@@ -161,7 +161,7 @@ class _Morse2Text extends State<Morse2Text> {
                 onPressed: () {
                   _doSth(1);
                 },
-                constraints: BoxConstraints.tight(const Size(150, 150)),
+                constraints: BoxConstraints.tight(const Size(120, 120)),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 fillColor: Colors.greenAccent,
@@ -183,7 +183,7 @@ class _Morse2Text extends State<Morse2Text> {
                     _doSth(-1);
                   }
                 },
-                constraints: BoxConstraints.tight(const Size(150, 80)),
+                constraints: BoxConstraints.tight(const Size(120, 80)),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 fillColor: Colors.yellowAccent,
@@ -203,7 +203,7 @@ class _Morse2Text extends State<Morse2Text> {
                     _doSth(2);
                   }
                 },
-                constraints: BoxConstraints.tight(const Size(150, 80)),
+                constraints: BoxConstraints.tight(const Size(120, 80)),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 fillColor: Colors.redAccent,
@@ -216,7 +216,7 @@ class _Morse2Text extends State<Morse2Text> {
               ),
             ]),
             const SizedBox(
-              height: 40.0,
+              height: 30.0,
             ),
             RawMaterialButton(
               onPressed: () {
@@ -224,7 +224,7 @@ class _Morse2Text extends State<Morse2Text> {
                   _doSth(3);
                 }
               },
-              constraints: BoxConstraints.tight(const Size(200, 80)),
+              constraints: BoxConstraints.tight(const Size(180, 70)),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               fillColor: Colors.lightGreenAccent,
@@ -246,7 +246,7 @@ class _Morse2Text extends State<Morse2Text> {
                 _result = '';
                 setState(() {});
               },
-              constraints: BoxConstraints.tight(const Size(150, 80)),
+              constraints: BoxConstraints.tight(const Size(130, 70)),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               fillColor: Colors.red,
